@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>game of 1000</title>
+
+</head>
+
+<style>
+    body {
+        background-image: url(kube.JPEG);
+
+        width: 100vh;
+        height: 100vh;
+
+        margin: 0 auto;
+    }
+
+    .bones {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bonesForPerekid {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+
+    .player1,
+    .player2 {
+        border: 1px solid black;
+        width: 200px;
+        height: 40vh;
+    }
+
+    #kub1,
+    #kub11,
+    #kub2,
+    #kub22,
+    #kub3,
+    #kub33,
+    #kub4,
+    #kub44,
+    #kub5,
+    #kub55 {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+        border: 2px solid rgb(135, 135, 253);
+        background-image: url(ask.png);
+        background-size: 100%;
+
+    }
+
+    .kub11,
+    .kub12,
+    .kub13,
+    .kub14,
+    .kub15 {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+        border: 2px solid rgb(135, 135, 253);
+        background-size: 100%;
+
+    }
+
+    .kubPC1,
+    .kubPC2,
+    .kubPC3,
+    .kubPC4,
+    .kubPC5 {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+        border: 2px solid red;
+        background-size: 100%;
+
+    }
+
+
+
+    .main_table {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .endOfHit {
+        display: none;
+
+    }
+
+    .perekid {
+        display: none;
+
+    }
+
+    .bonesForPerekid {
+        align-items: center;
+        height: 300px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    @keyframes blink {
+        50% {
+
+            color: blue;
+        }
+    }
+
+    .play1 {
+        animation: blink infinite;
+    }
+
+    .start,
+    .prodolzhaem {
+        width: 12vh;
+        height: 4vh;
+        background-color: #ccc;
+        /* Серый цвет фона */
+        color: #fff;
+        /* Белый цвет текста */
+        align-items: center;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        /* Плавный переход при hover */
+    }
+
+    .start:hover {
+        background: linear-gradient(blue, rgb(141, 141, 141));
+        border-radius: 7%;
+    }
+
+    .prodolzhaem:hover {
+        background: linear-gradient(rgb(255, 112, 112), rgb(141, 141, 141));
+        border-radius: 7%;
+    }
+
+
+
+
+    @keyframes blink2 {
+        50% {
+
+            color: red;
+        }
+    }
+
+    .play2 {
+        animation: blink2 infinite;
+    }
+
+    .pcKidok1 {
+        border: solid 1px;
+        width: 100px;
+        height: 20px;
+    }
+
+    .info_table {
+        width: 40%;
+        height: 150px;
+        background-color: white;
+        margin: 0 auto;
+        margin-top: 30px;
+        overflow-y: scroll;
+    }
+
+    .btnpanel {
+        width: 13%;
+        height: 50px;
+        margin: 0 auto;
+    }
+
+    .prodolzhaem {
+        display: none;
+    }
+
+    .info-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.info-text {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.info-icon:hover .info-text {
+  display: block;
+}
+</style>
+
+<body>
+    <div class="main_table">
+        <div class="player1"><span class="play1">
+                <h2>Player_1</h2>
+            </span>
+            <div class="total"><span id="total">Всего у вас: </span><span id="totalResult"></span></div>
+
+        </div>
+
+        <div class="bones">
+
+
+            <div id="kub1"></div>
+            <div id="kub2"></div>
+            <div id="kub3"></div>
+            <div id="kub4"></div>
+            <div id="kub5"></div>
+
+
+
+
+
+        </div>
+
+        <div class="bonesForPerekid">
+            <!-- <div id="kub11"></div>
+            <div id="kub22"></div>
+            <div id="kub33"></div>
+            <div id="kub44"></div> -->
+
+
+            <div class="btnpanel">
+                <!-- <button class="start2">start</button>
+                <button class="endOfHit2">End</button>
+                 <button class="perekid">Perekinut1</button> -->
+            </div>
+
+        </div>
+
+
+
+        <div class="player2"><span class="play2">
+                <h2>Nahibatus V3.7</h2>
+            </span>
+            <div class="total"><span id="total">Зараховано: </span><span id="totalPCResult"></span></div>
+        </div>
+
+    </div>
+    <div class="btnpanel">
+        <button class="start">Кинути</button>
+        <button class="endOfHit">Зарахувати</button>
+        <button class="perekid">Перекинути</button>
+        <button class="prodolzhaem">Поїхали далі</button>
+    </div>
+    <div class="info_table"><span id="inner_info">.
+
+        </span></div>
+        <div class="info-icon">
+            <i class="fas fa-info-circle"></i>
+            <div class="info-text">Текст с информацией</div>
+          </div>
+
+    <script src="hitFromComp.js"> </script>
+    <script src="js.js"></script>
+
+</body>
