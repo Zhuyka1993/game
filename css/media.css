@@ -1,0 +1,26 @@
+@media only screen and (max-width: 750px) {
+    /* CSS правила для мобильных телефонов с шириной экрана до 480 пикселей */
+    /* Например: */
+    .main_table { 
+    flex-direction: column;
+    }
+    .player2 { 
+        margin-top: 3em;
+    }
+    .parrentForBones{ 
+        margin-left: 200px;
+        margin-top: -3em;
+        rotate: 90deg;
+        height: 100px;
+    }
+    #kub1, #kub2, #kub3, #kub4, #kub5 { 
+        transform: rotate(-90deg);
+    }
+    .info_table { 
+        width:80%;
+        margin: 0;
+    }
+    .tooltip { 
+        width: 270px;
+    }
+}

@@ -8,25 +8,73 @@
 </head>
 
 <style>
-    body {
-        background-image: url(kube.png);
+    @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Russo+One&family=Shadows+Into+Light&display=swap');
 
-        width: 100vh;
+    @font-face {
+        font-family: Kablammo-Regular-VariableFont_MORF;
+        src: url("Kablammo-Regular-VariableFont_MORF.ttf")
+    }
+
+    @font-face {
+        font-family: "ShadowsIntoLight-Regular";
+        src: url("ShadowsIntoLight-Regular.ttf");
+
+    }
+
+    @font-face {
+        font-family: "Chokokutai-Regular";
+        src: url("Chokokutai-Regular.ttf");
+    }
+
+    .output_info_pc {
+        font-family: "Kablammo-Regular-VariableFont_MORF";
+        color: rgb(195 108 0);
+
+    }
+
+    #totalResult,
+    #totalPCResult {
+
+        font-family: "Chokokutai-Regular";
+        font-size: xx-large;
+        color: #2ec9fb;
+    }
+
+    #totalPCResult {
+        color: rgb(245, 119, 46);
+    }
+
+    .total {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    body {
+        background-image: url(kube_final.jpg);
+        background-repeat: no-repeat;
+        background-size: 100em;
+        background-size: cover;
         height: 100vh;
+        display: flex;
+        flex-direction: column;
+        min-width: 500px;
+        width: 80%;
+
 
         margin: 0 auto;
     }
 
     .bones {
         display: flex;
-        flex-direction: column;
+
         align-items: center;
     }
 
-    .bonesForPerekid {
-        display: none;
-        flex-direction: column;
-        align-items: center;
+    .parrentForBones {
+        width: 330px;
+        padding-top: 40px;
     }
 
 
@@ -35,7 +83,13 @@
     .player2 {
         border: 1px solid black;
         width: 200px;
-        height: 40vh;
+        background-image: url("background6.png");
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 15px;
+        min-width: 176px;
     }
 
     #kub1,
@@ -52,7 +106,7 @@
         height: 50px;
         margin: 5px;
         border: 2px solid rgb(135, 135, 253);
-        background-image: url(ask.png);
+        background-image: url(ask.jpg);
         background-size: 100%;
 
     }
@@ -93,31 +147,33 @@
 
     .endOfHit {
         display: none;
+        width: 12vh;
+        height: 4vh;
+        border: none;
+        margin-right: 40px;
+        padding-top: 8px;
+        border-radius: 7%;
 
     }
 
     .perekid {
         display: none;
+        width: 12vh;
+        height: 4vh;
+        border-radius: 7%;
+        border: none;
+        margin-right: 40px;
+        padding-top: 8px;
 
     }
 
     .bonesForPerekid {
-        align-items: center;
-        height: 300px;
-        display: flex;
-        justify-content: space-around;
+
+
+        display: none;
+
     }
 
-    @keyframes blink {
-        50% {
-
-            color: blue;
-        }
-    }
-
-    .play1 {
-        animation: blink infinite;
-    }
 
     .start,
     .prodolzhaem {
@@ -131,18 +187,30 @@
         justify-content: center;
         border: none;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.4s ease;
         /* Плавный переход при hover */
+        border-radius: 3%;
     }
 
-    .start:hover {
-        background: linear-gradient(blue, rgb(141, 141, 141));
+    .start:hover,
+    .endOfHit:hover,
+    .perekid:hover {
+        
         border-radius: 7%;
+        background-color: #4cc9f0;
+        color: #fff;
+        box-shadow: 10px 10px 100px 6px #32b0d6;
+    }
+
+    .player_info_output { 
+        color: #2196f3;
+        font-size: large;
     }
 
     .prodolzhaem:hover {
-        background: linear-gradient(rgb(255, 112, 112), rgb(141, 141, 141));
+        background: linear-gradient(rgb(255, 112, 112), rgb(231, 205, 205));
         border-radius: 7%;
+        box-shadow: 10px 10px 100px 6px #fdc3c3;
     }
 
 
@@ -166,18 +234,26 @@
     }
 
     .info_table {
-        width: 40%;
+        width: 60%;
         height: 150px;
-        background-color: white;
+        background-color: rgba(206, 204, 204, 0.623);
         margin: 0 auto;
         margin-top: 30px;
-        overflow-y: scroll;
+        overflow-y: auto;
+        border: solid #ececec77;
+        border-radius: 4px;
+        min-width: 400px;
+
+
     }
 
     .btnpanel {
         width: 13%;
         height: 50px;
         margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .prodolzhaem {
@@ -185,70 +261,136 @@
     }
 
     .info-icon {
-  position: relative;
-  display: inline-block;
-}
+        position: relative;
+        display: inline-block;
+    }
 
-.info-text {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  display: none;
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
+    .info-text {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        display: none;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
 
-.info-icon:hover .info-text {
-  display: block;
-}
+    .pc,
+    .player {
+        font-family: "ShadowsIntoLight-Regular";
+        font-size: xx-large;
+        color: rgb(255, 115, 0);
+        margin-top: 15px;
+        font-size: xx-large;
+        font-weight: bold;
+    }
+
+    .player {
+        color: #2ec9fb;
+    }
+
+    .info-icon:hover .info-text {
+        display: block;
+    }
+
+    .tooltip-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .tooltip {
+        display: none;
+        background-color: rgba(92, 88, 88, 0.616);
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        z-index: 1;
+        float: right;
+        width: 400px;
+        margin-top: -5em;
+        margin-left: 1em;
+    }
+
+    .tooltip-trigger {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 4vh;
+        width: 12vh;
+        background-color: #e75f04f8;
+        border-radius: 7%;
+
+    }
+
+    .tooltip-trigger:hover+.tooltip {
+        margin-top: 0em;
+        margin-left: 6em;
+        display: block;
+        position: absolute;
+
+    }
 </style>
 
 <body>
+    <div class="tooltip-container">
+        <span class="tooltip-trigger">Як грати?</span>
+        <div class="tooltip">Ціль цієї гри - набрати 1000 очків перш, ніж це зробить опонент. Перший хід - це кидок 5
+            кубиків. А тепер про комбінації: <br>
+            <span>Одиниці:</span> <br>
+            Одиниця - 10 балів. Дві одиниці - 20 балів.
+            Три одиниці – 100 балів. 4 одиниці – 200 балів. 5 – 1000. <br>
+            <span>Двійки:</span> <br>
+            3 двійки – 20, 4 двійки – 40, 5 двійок – 200. <br>
+            <span>Трійки:</span> <br>
+            3 трійки - 30, 4 трійки - 60, 5 трійок - 300 <br>
+            <span>Четвірки:</span> <br>
+            3 - 40, 4 - 80, 5 - 400. <br>
+            <span>П'ятірки:</span> <br>
+            Одна - 5 балів. Дві - 10 балів
+            3 - 50, 4 - 100, 5 - 500. <br>
+            <span>Шістки:</span> <br>
+            3-60, 4-120, 5-600. <br>
+            Якщо за перший хід у вас випало 0 - то хід одразу переходить комп'ютеру
+            Якщо за перший хід у вас випало НЕ 0, то ви можете зробити додатковий хід,
+            і перекинути НЕ призові кубики, але якщо за другий хід випаде 0 балів, то ви втрачаєте бали за перший кидок,
+            і передаєте хід комп'ютеру.
+        </div>
+    </div>
     <div class="main_table">
         <div class="player1"><span class="play1">
-                <h2>Player_1</h2>
-            </span>
-            <div class="total"><span id="total">Всего у вас: </span><span id="totalResult"></span></div>
+                <span class="player">Player:</h2>
+                </span>
+                <div class="total"><span id="total">Всего у вас: </span><span id="totalResult"></span></div>
 
         </div>
+        <div class="parrentForBones">
 
-        <div class="bones">
-
-
-            <div id="kub1"></div>
-            <div id="kub2"></div>
-            <div id="kub3"></div>
-            <div id="kub4"></div>
-            <div id="kub5"></div>
+            <div class="bones">
 
 
+                <div id="kub1"></div>
+                <div id="kub2"></div>
+                <div id="kub3"></div>
+                <div id="kub4"></div>
+                <div id="kub5"></div>
 
 
 
-        </div>
-
-        <div class="bonesForPerekid">
-            <!-- <div id="kub11"></div>
-            <div id="kub22"></div>
-            <div id="kub33"></div>
-            <div id="kub44"></div> -->
 
 
-            <div class="btnpanel">
-                <!-- <button class="start2">start</button>
-                <button class="endOfHit2">End</button>
-                 <button class="perekid">Perekinut1</button> -->
             </div>
 
+            <div class="bonesForPerekid">
+
+            </div>
         </div>
 
 
 
         <div class="player2"><span class="play2">
-                <h2>Nahibatus V3.7</h2>
+                <span class="pc">Nagibatus V3.7</span>
             </span>
             <div class="total"><span id="total">Зараховано: </span><span id="totalPCResult"></span></div>
         </div>
@@ -260,15 +402,14 @@
         <button class="perekid">Перекинути</button>
         <button class="prodolzhaem">Поїхали далі</button>
     </div>
-    <div class="info_table"><span id="inner_info">.
+    <div class="info_table">
+        <span id="inner_info"></span>
 
-        </span></div>
-        <div class="info-icon">
-            <i class="fas fa-info-circle"></i>
-            <div class="info-text">Текст с информацией</div>
-          </div>
+    </div>
+
 
     <script src="hitFromComp.js"> </script>
     <script src="js.js"></script>
+    <link href="./css/media.css" rel="stylesheet" type="text/css">
 
 </body>

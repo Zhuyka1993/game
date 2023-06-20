@@ -254,16 +254,17 @@ function start() {
     if (firstTurn > 0) {
 
         // information after first roll:
-        let divForPoint = document.createElement('div');
-        divForPoint.style = "color: blue";
-        divForPoint.innerHTML = "За  перший хід ви заробили:" + firstTurn + " Очків";
+        let divForPoint = document.createElement('span');
+        divForPoint.className="player_info_output";
+        
+        divForPoint.innerHTML = "За  перший хід ви заробили:" + firstTurn + " Очків <br>";
         infoTable.appendChild(divForPoint);
 
         //information how much dice player can roll in second time
-        let infoTableSpan = document.createElement('div');
-        infoTableSpan.style = "color: blue";
+        let infoTableSpan = document.createElement('span');
+        infoTableSpan.className = "player_info_output";
 
-        infoTableSpan.innerHTML = "можете перекинути:" + moznoPerekinut + " кубиків";
+        infoTableSpan.innerHTML = "Можете перекинути:" + moznoPerekinut + " кубиків. <br>";
         infoTable.appendChild(infoTableSpan);
 
         //scroll info table to bottom
@@ -332,9 +333,9 @@ function end() {
     if (firstTurn == 0) {
 
         let infoTable = document.querySelector('.info_table');
-        let divForPoint = document.createElement('div');
-        divForPoint.style = "color: blue";
-        divForPoint.innerHTML = "У вас випало нуль, Тому хід перейшов комп'ютеру";
+        let divForPoint = document.createElement('span');
+        divForPoint.className="player_info_output"
+        divForPoint.innerHTML = "У вас випало нуль, Тому хід перейшов комп'ютеру <br>";
         infoTable.appendChild(divForPoint);
 
         let appearpere = document.querySelector(".perekid");
@@ -352,9 +353,9 @@ function end() {
     else if (secondTurn == 0) {
         console.log("в енду при первом ход = 0 зашел в условие")
         let infoTable = document.querySelector('.info_table');
-        let divForPoint = document.createElement('div');
-        divForPoint.style = "color: blue";
-        divForPoint.innerHTML = "Тому хід перейшов комп'ютеру";
+        let divForPoint = document.createElement('span');
+        divForPoint.className="player_info_output";
+        divForPoint.innerHTML = "Тому хід перейшов комп'ютеру<br>";
         infoTable.appendChild(divForPoint);
 
         let appearpere = document.querySelector(".perekid");
@@ -366,6 +367,7 @@ function end() {
         let delbtnend = document.querySelector(".endOfHit");
         delbtnend.style = "display:none;"
         total = total + 0;
+        
         startFromComp(); //function, from which start computer;
     }
 
@@ -375,10 +377,12 @@ function end() {
         total = total + firstTurn + secondTurn;
         let rav = document.getElementById("totalResult");
         rav.innerHTML = total;
+        
         startFromComp(); //function, from which start computer;
     };
+    
 
-
+    secondTurn = null;
 
 };
 
@@ -603,7 +607,8 @@ function pere() {
     let Table = document.querySelector('.info_table');
     // Show result on info block, how much score in second turn.
     let divForperekid = document.createElement('div');
-    divForperekid.style = "color: blue";
+    divForperekid.className="player_info_output";
+    
     divForperekid.innerHTML = "За повторний хід ви заробили:" + secondTurn + " Очків";
     Table.appendChild(divForperekid);
 

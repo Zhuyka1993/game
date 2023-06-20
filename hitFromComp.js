@@ -15,8 +15,8 @@ function startFromComp() {
 
 
     //Turn ON our animation of blinding of PC;
-    let clearblind = document.querySelector(".play2");
-    clearblind.style = "animation: blink2 1s  infinite;"
+    //let clearblind = document.querySelector(".pc");
+    //clearblind.style = "animation: blink2 1s  infinite;"
     console.log("зайшли в стартфромкомп, тест на первый ход" + currentInOneHitPC);
 
     //Remove dice after rolling of player; 
@@ -53,39 +53,39 @@ function startFromComp() {
             console.log("считаю:" + count)
             if (result[count] == 1) {//if match is 1, then match count+=1
                 sovpadeniyaNa1PC += 1;
-                    // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
-                    let element = document.querySelector('.kubPC' + count );
-                    element.style.backgroundImage = 'url(redone.png) '; //путь к вашему изображению
+                // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
+                let element = document.querySelector('.kubPC' + count);
+                element.style.backgroundImage = 'url(redone.png) '; //путь к вашему изображению
             }
             else if (result[count] == 2) {  // matching for "2";
                 sovpadeniyaNa2PC += 1;
-                 // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
-                 let element = document.querySelector('.kubPC' + count );
-                 element.style.backgroundImage = 'url(redtwo.png) '; //путь к вашему изображению
+                // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
+                let element = document.querySelector('.kubPC' + count);
+                element.style.backgroundImage = 'url(redtwo.png) '; //путь к вашему изображению
             }
             else if (result[count] == 3) {
                 sovpadeniyaNa3PC += 1;
-                    // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
-                    let element = document.querySelector('.kubPC' + count );
-                    element.style.backgroundImage = 'url(redthree.png) '; //путь к вашему изображению
+                // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
+                let element = document.querySelector('.kubPC' + count);
+                element.style.backgroundImage = 'url(redthree.png) '; //путь к вашему изображению
             }
             else if (result[count] == 4) {
                 sovpadeniyaNa4PC += 1;
-                    // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
-                    let element = document.querySelector('.kubPC' + count);
-                    element.style.backgroundImage = 'url(redfour.png) '; //путь к вашему изображению
+                // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
+                let element = document.querySelector('.kubPC' + count);
+                element.style.backgroundImage = 'url(redfour.png) '; //путь к вашему изображению
             }
             else if (result[count] == 5) {
                 sovpadeniyaNa5PC += 1;
-                    // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
-                    let element = document.querySelector('.kubPC' + count );
-                    element.style.backgroundImage = 'url(redfive.png) '; //путь к вашему изображению
+                // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
+                let element = document.querySelector('.kubPC' + count);
+                element.style.backgroundImage = 'url(redfive.png) '; //путь к вашему изображению
             }
             else if (result[count] == 6) {
                 sovpadeniyaNa6PC += 1;
-                    // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
-                    let element = document.querySelector('.kubPC' + count );
-                    element.style.backgroundImage = 'url(redsix.png) '; //путь к вашему изображению
+                // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
+                let element = document.querySelector('.kubPC' + count);
+                element.style.backgroundImage = 'url(redsix.png) '; //путь к вашему изображению
 
             }
 
@@ -228,9 +228,10 @@ function startFromComp() {
 
 
     let insertSeconeHit = document.querySelector('.info_table');
-    let divForsec = document.createElement('div');
-    divForsec.style = "color: red";
-    divForsec.innerHTML = "За перший хід комп'ютер заробив:" + currentInOneHitPC;
+    let divForsec = document.createElement('span');
+    divForsec.className="output_info_pc";
+    divForsec.style = "color: #c37515";
+    divForsec.innerHTML = "За перший хід комп'ютер заробив:" + currentInOneHitPC + "<br>";
 
     insertSeconeHit.appendChild(divForsec);
 
@@ -239,9 +240,10 @@ function startFromComp() {
     addper.style = "display: none;"
     if (currentInOneHitPC == 0) {
         let infoTab = document.querySelector('.info_table');
-        let divFor = document.createElement('div');
-        divFor.style = "color: red";
-        divFor.innerHTML = "Комп'ютер заробив за перший хід:" + currentInOneHitPC + " очків, тому хід переходить вам";
+        let divFor = document.createElement('span');
+        divFor.className="output_info_pc";
+        divFor.style = "color: #c37515";
+        divFor.innerHTML = " Тому хід переходить вам <br>";
         infoTab.appendChild(divFor);
         //опускаем бигунок прокрутки вниз
         let bot = document.querySelector('.info_table');
@@ -249,17 +251,31 @@ function startFromComp() {
         document.getElementsByClassName(".start").style = "display:flex"; //show "start" button 
     }
     else if (currentInOneHitPC > 0) {
+
+
         if (moznoPerekinutPC > 2) {
             let insertSeconeHit = document.querySelector('.info_table');
-            let divForsec = document.createElement('div');
-            divForsec.style = "color: red";
-            divForsec.innerHTML = "Комп'ютер хоче перекинути не виграшну комбінацію, та ризикує втратити " + currentInOneHitPC + "очків";
+            let divForsec = document.createElement('span');
+            divForsec.className ="output_info_pc";
+            divForsec.innerHTML = "Комп'ютер хоче перекинути не виграшну комбінацію, та ризикує втратити " + currentInOneHitPC + " очків <br>";
             //опускаем бигунок прокрутки вниз
-            let bot = document.querySelector('.info_table');
-            bot.scrollTop = bot.scrollHeight;
+
 
             insertSeconeHit.appendChild(divForsec);
+            let bot = document.querySelector('.info_table');
+            bot.scrollTop = bot.scrollHeight;
             perekidPC();
+        }
+        else if (moznoPerekinutPC <= 2) {
+            let insertSeconeHit = document.querySelector('.info_table');
+            let divForsec = document.createElement('span');
+            divForsec.className="output_info_pc"
+            divForsec.innerHTML = "Та вирішив зарахувати зароблені бали. Хід переходить вам. <br>";
+
+
+            insertSeconeHit.appendChild(divForsec);
+            let bot = document.querySelector('.info_table');
+            bot.scrollTop = bot.scrollHeight;
         }
     };
 
@@ -336,51 +352,51 @@ function checkHowMuchInSecondHit() { //функция проверки на со
     for (let count = 0; count < moznoPerekinutPC; count++) {
         if (resultPerekid[count] == 1) { //если совпадение на 1, то счетчик совпадений+1
             sovpadeniyaNa1PC2hit++;
-            if(document.querySelector('.kubPCperekid' + count)){
+            if (document.querySelector('.kubPCperekid' + count)) {
                 // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
                 let element = document.querySelector('.kubPCperekid' + count);
                 element.style.backgroundImage = 'url(redone.png) '; //путь к вашему изображению
-                };
+            };
         }
         else if (resultPerekid[count] == 2) {  // совпадения на двойки
             sovpadeniyaNa2PC2hit += 1;
-            if(document.querySelector('.kubPCperekid' + count)){
+            if (document.querySelector('.kubPCperekid' + count)) {
                 // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
                 let element = document.querySelector('.kubPCperekid' + count);
                 element.style.backgroundImage = 'url(redtwo.png) '; //путь к вашему изображению
-                };
+            };
         }
         else if (resultPerekid[count] == 3) {   //совпадение на тройки
             sovpadeniyaNa3PC2hit += 1;
-            if(document.querySelector('.kubPCperekid' + count)){
+            if (document.querySelector('.kubPCperekid' + count)) {
                 // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
                 let element = document.querySelector('.kubPCperekid' + count);
                 element.style.backgroundImage = 'url(redthree.png) '; //путь к вашему изображению
-                };
+            };
         }
         else if (resultPerekid[count] == 4) {//совпадение на 4
             sovpadeniyaNa4PC2hit += 1;
-            if(document.querySelector('.kubPCperekid' + count)){
+            if (document.querySelector('.kubPCperekid' + count)) {
                 // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
                 let element = document.querySelector('.kubPCperekid' + count);
                 element.style.backgroundImage = 'url(redfour.png) '; //путь к вашему изображению
-                };
+            };
         }
         else if (resultPerekid[count] == 5) {//совпадение на 5
             sovpadeniyaNa5PC2hit += 1;
-            if(document.querySelector('.kubPCperekid' + count)){
+            if (document.querySelector('.kubPCperekid' + count)) {
                 // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
                 let element = document.querySelector('.kubPCperekid' + count);
                 element.style.backgroundImage = 'url(redfive.png) '; //путь к вашему изображению
-                };
+            };
         }
         else if (resultPerekid[count] == 6) {//совпадение на 6
             sovpadeniyaNa6PC2hit += 1;
-            if(document.querySelector('.kubPCperekid' + count)){
+            if (document.querySelector('.kubPCperekid' + count)) {
                 // Получаем ссылку на элемент, к которому нужно применить фоновое изображение
                 let element = document.querySelector('.kubPCperekid' + count);
                 element.style.backgroundImage = 'url(redsix.png) '; //путь к вашему изображению
-                };
+            };
         }
 
     };
@@ -557,15 +573,15 @@ function endPC() {
 
     if (currentInOneHitPC == 0) {
         //якщо перший хід 0
-        let insertSeconeHit = document.querySelector('.info_table');
-        let divForsec = document.createElement('div');
-        divForsec.style = "color: red";
-        divForsec.innerHTML = "За перший хід у комп'ютера випало нуль очок, тому хід переходить вам";
+        // let insertSeconeHit = document.querySelector('.info_table');
+        //let divForsec = document.createElement('div');
+        //divForsec.style = "color: red";
+        //divForsec.innerHTML = "За перший хід у комп'ютера випало нуль очок, тому хід переходить вам";
         //опускаем бигунок прокрутки вниз
-        let bot = document.querySelector('.info_table');
-        bot.scrollTop = bot.scrollHeight;
+        //let bot = document.querySelector('.info_table');
+        //bot.scrollTop = bot.scrollHeight;
 
-        insertSeconeHit.appendChild(divForsec);
+
         totalPc += 0;
         prodolzhenie;
     }
@@ -573,14 +589,15 @@ function endPC() {
 
 
         let insertSeconeHit = document.querySelector('.info_table');
-        let divForsec = document.createElement('div');
-        divForsec.style = "color: red";
-        divForsec.innerHTML = "За другий хід у комп'ютера випало нуль очок, тому хід переходить вам і комп'ютер втратив  " + currentInOneHitPC;
+        let divForsec = document.createElement('span');
+        divForsec.className="output_info_pc"
+        divForsec.innerHTML = "За другий хід у комп'ютера випало нуль очок, тому хід переходить вам і комп'ютер втратив  " + currentInOneHitPC + "<br>";
+
+
+        insertSeconeHit.appendChild(divForsec);
         //опускаем бигунок прокрутки вниз
         let bot = document.querySelector('.info_table');
         bot.scrollTop = bot.scrollHeight;
-
-        insertSeconeHit.appendChild(divForsec);
         totalPc += 0;
         prodolzhenie;
 
@@ -595,9 +612,9 @@ function endPC() {
         totalPc = totalPc + currentInOneHitPC + sexondHitPC;
         //бЛОК НИЖЧЕ ДЛЯ ЗАПИСУ В ХТМЛ КІЛЬКІСТЬ ОЧОК З другого ХОДУ КОМПА
         let infoTab = document.querySelector('.info_table');
-        let divFor = document.createElement('div');
-        divFor.style = "color: red";
-        divFor.innerHTML = "Комп'ютер заробив за другий хід:" + sexondHitPC + " очків";
+        let divFor = document.createElement('span');
+        divFor.className="output_info_pc";
+        divFor.innerHTML = "Комп'ютер заробив за другий хід:" + sexondHitPC + " очків <br>";
         infoTab.appendChild(divFor);
         prodolzhenie;
 
